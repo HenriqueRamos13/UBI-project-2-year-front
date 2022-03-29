@@ -76,9 +76,9 @@ export const AuthProvider: React.FC = ({ children }) => {
       return;
     }
 
-    setCheckingSession(false);
-    setIsAuthenticated(true);
-    navigate("/app", { replace: true });
+    // setCheckingSession(false);
+    // setIsAuthenticated(true);
+    // navigate("/app", { replace: true });
   };
 
   const login = async (email: string, password: string) => {
