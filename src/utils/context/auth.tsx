@@ -133,6 +133,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       const { logout, error } = await API.logout();
 
       window.localStorage.removeItem("@miner");
+      window.localStorage.removeItem("chests");
       window.localStorage.removeItem("@expireMiner");
 
       if (!logout || error) {
@@ -152,7 +153,11 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     try {
-      handleAuthentication();
+      const user = window.localStorage.getItem("@miner");
+
+      if (user) {
+        handleAuthentication();
+      }
     } catch (error) {
       setIsAuthenticated(false);
       setCheckingSession(false);

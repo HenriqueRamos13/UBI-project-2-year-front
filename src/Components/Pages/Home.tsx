@@ -23,9 +23,9 @@ export default function Home() {
   }, []);
 
   const openChest = async (code: string) => {
-    const { error, chest } = await API.openChest(code);
+    const { decrypted, seconds, error } = await API.openChest(code);
 
-    if (error || !chest) {
+    if (error || !seconds || !decrypted) {
       alert(error);
     } else {
       setChests(
@@ -34,7 +34,7 @@ export default function Home() {
           chests.map((chest) => (chest.code === code ? chest : chest))
         )
       );
-      alert("OPPENED");
+      alert("OPPENED - time: " + seconds + " seconds - message: " + decrypted);
     }
   };
 

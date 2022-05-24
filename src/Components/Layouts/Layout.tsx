@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Outlet } from "react-router-dom";
+import { AuthContext } from "../../utils/context/auth";
 
 const user = {
   name: "Tom Cook",
@@ -9,15 +10,9 @@ const user = {
   imageUrl:
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-];
+const navigation = [{ name: "Dashboard", href: "#", current: true }];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
 
@@ -26,6 +21,8 @@ function classNames(...classes: string[]) {
 }
 
 export default function Layout() {
+  const { logout } = useContext(AuthContext);
+
   return (
     <>
       <div className="min-h-full">
@@ -69,9 +66,10 @@ export default function Layout() {
                     <button
                       type="button"
                       className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      onClick={logout}
                     >
                       <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
+                      Sair
                     </button>
 
                     {/* Profile dropdown */}
